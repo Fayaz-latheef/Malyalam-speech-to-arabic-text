@@ -1,0 +1,646 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Keralolsavam 2025 — Live Malayalam → Arabic</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --bg:#050816;
+      --card:#0b1220;
+      --accent:#22c55e;
+      --accent2:#38bdf8;
+      --text:#f9fafb;
+      --muted:#9ca3af;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:radial-gradient(circle at top,#0b1120 0,#020617 55%);
+      color:var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    }
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      min-height: 100vh;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    header{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    h1{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: 0.03em;
+    }
+    .subtitle{
+      font-size:13px;
+      color:var(--muted);
+    }
+    .event-pill{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(148,163,184,0.18);
+      font-size:12px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 8px rgba(34,197,94,0.8);
+    }
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    button{
+      border:none;
+      border-radius:999px;
+      padding:10px 18px;
+      font-weight:600;
+      cursor:pointer;
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    button.primary{
+      background:var(--accent);
+      color:black;
+    }
+    button.secondary{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(148,163,184,0.4);
+    }
+    button:disabled{
+      opacity:0.4;
+      cursor:not-allowed;
+    }
+    #status{
+      font-size:13px;
+      color:var(--muted);
+    }
+    main{
+      display:grid;
+      grid-template-columns: minmax(0,2.2fr) minmax(0,1fr);
+      gap:16px;
+      margin-top:8px;
+      flex:1;
+    }
+    @media(max-width:900px){
+      main{
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+    .card{
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.15), transparent 45%),
+                  radial-gradient(circle at bottom right, rgba(34,197,94,0.15), transparent 50%),
+                  var(--card);
+      border-radius:18px;
+      padding:16px 18px;
+      box-shadow:0 20px 40px rgba(15,23,42,0.9);
+    }
+    .label-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      margin-bottom:4px;
+    }
+    .label-row span{
+      font-size:13px;
+      color:var(--muted);
+    }
+    .lang-tag{
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.3);
+      font-size:12px;
+    }
+    #mlText, #arText{
+      min-height:90px;
+      border-radius:14px;
+      padding:14px 12px;
+      background:rgba(15,23,42,0.85);
+      border:1px solid rgba(148,163,184,0.25);
+      font-size:26px;
+      line-height:1.35;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    #mlText{
+      font-size:24px;
+    }
+    #arText{
+      font-size:30px;
+      direction:rtl;
+      font-family: "Tahoma", system-ui;
+    }
+    .placeholder{
+      color:var(--muted);
+      font-size:16px;
+    }
+    .meter-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+      gap:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .meter{
+      flex:1;
+      height:10px;
+      background:rgba(15,23,42,0.9);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .meter i{
+      display:block;
+      height:100%;
+      width:1%;
+      background:linear-gradient(90deg,#22c55e,#38bdf8);
+      transform-origin:left center;
+    }
+    .settings{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .settings label{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .settings input[type=range]{
+      width:150px;
+    }
+    .settings select{
+      background:rgba(15,23,42,0.9);
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.4);
+      color:var(--text);
+      padding:4px 8px;
+      font-size:12px;
+    }
+    .history-card{
+      background:rgba(15,23,42,0.95);
+      border-radius:16px;
+      padding:12px;
+      border:1px solid rgba(30,64,175,0.7);
+    }
+    .history-title{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:6px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    #history{
+      max-height:340px;
+      overflow:auto;
+      font-size:13px;
+    }
+    .hist-item{
+      padding:8px 6px;
+      border-bottom:1px solid rgba(55,65,81,0.45);
+    }
+    .hist-item:last-child{ border-bottom:none; }
+    .hist-ml{
+      font-size:13px;
+      color:var(--text);
+    }
+    .hist-ar{
+      font-size:15px;
+      margin-top:2px;
+      color:#e5e7eb;
+      direction:rtl;
+      text-align:right;
+    }
+    .hist-meta{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:2px;
+      display:flex;
+      justify-content:space-between;
+    }
+    #log{
+      margin-top:8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:11px;
+      color:var(--muted);
+      max-height:80px;
+      overflow:auto;
+      white-space:pre-wrap;
+    }
+    footer{
+      margin-top:6px;
+      font-size:11px;
+      color:var(--muted);
+      text-align:right;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Keralolsavam 2025 — Live Malayalam → Arabic</h1>
+      <div class="subtitle">Stage demo • Real-time speech translation</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end">
+      <div class="event-pill">
+        <span class="dot"></span>
+        Dubai • Malayalam → Arabic
+      </div>
+      <div id="status">Ready</div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <button id="startBtn" class="primary">
+      ▶ Start translation
+    </button>
+    <button id="stopBtn" class="secondary" disabled>
+      ■ Stop
+    </button>
+  </div>
+
+  <main>
+    <section class="card">
+      <div class="label-row">
+        <span>Malayalam (input)</span>
+        <span class="lang-tag">From: Malayalam</span>
+      </div>
+      <div id="mlText"><span class="placeholder">Speak into the microphone…</span></div>
+
+      <div class="label-row" style="margin-top:12px;">
+        <span>Arabic (translation)</span>
+        <span class="lang-tag">To: Arabic</span>
+      </div>
+      <div id="arText"><span class="placeholder">Arabic translation will appear here</span></div>
+
+      <div class="meter-row">
+        <span>Mic level</span>
+        <div class="meter"><i id="micLevel"></i></div>
+        <span id="chunkInfo">Chunk: idle</span>
+      </div>
+
+      <div class="settings">
+        <label>Chunk length: <span id="chunkVal">3.0s</span>
+          <input id="chunkRange" type="range" min="1" max="6" step="0.5" value="3">
+        </label>
+
+        <label>Sample rate:
+          <select id="sampleRateSelect">
+            <option value="16000" selected>16 kHz (recommended)</option>
+            <option value="24000">24 kHz</option>
+            <option value="48000">48 kHz</option>
+          </select>
+        </label>
+
+        <span>Session: <span id="sessionId"></span></span>
+      </div>
+
+      <div id="log"></div>
+    </section>
+
+    <aside class="history-card">
+      <div class="history-title">
+        <span>History</span>
+        <span style="font-size:11px;">Newest on top</span>
+      </div>
+      <div id="history"></div>
+    </aside>
+  </main>
+
+  <footer>Backend: Flask `/transcribe` → Malayalam STT → Arabic translation → JSON</footer>
+</div>
+
+<script>
+const startBtn = document.getElementById('startBtn');
+const stopBtn  = document.getElementById('stopBtn');
+const statusEl = document.getElementById('status');
+const logEl    = document.getElementById('log');
+const mlTextEl = document.getElementById('mlText');
+const arTextEl = document.getElementById('arText');
+const historyEl= document.getElementById('history');
+const micLevelBar = document.getElementById('micLevel');
+const chunkInfo = document.getElementById('chunkInfo');
+const chunkRange = document.getElementById('chunkRange');
+const chunkVal = document.getElementById('chunkVal');
+const sampleRateSelect = document.getElementById('sampleRateSelect');
+const sessionIdEl = document.getElementById('sessionId');
+
+function log(msg){
+  const t = new Date().toLocaleTimeString();
+  logEl.textContent += `[${t}] ${msg}\n`;
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function setStatus(txt, color){
+  statusEl.textContent = txt;
+  statusEl.style.color = color || '#9ca3af';
+}
+
+let audioContext = null;
+let micStream = null;
+let scriptNode = null;
+let analyzer = null;
+let sampleRate = parseInt(sampleRateSelect.value,10);
+let bufferParts = [];
+let recordedSeconds = 0;
+let chunkSeconds = parseFloat(chunkRange.value);
+let sessionId = Math.floor(Math.random()*1e6);
+let chunkIndex = 0;
+
+sessionIdEl.textContent = sessionId;
+chunkVal.textContent = chunkSeconds.toFixed(1) + 's';
+
+chunkRange.addEventListener('input', () => {
+  chunkSeconds = parseFloat(chunkRange.value);
+  chunkVal.textContent = chunkSeconds.toFixed(1) + 's';
+});
+
+sampleRateSelect.addEventListener('change', () => {
+  sampleRate = parseInt(sampleRateSelect.value,10);
+  log("Selected sample rate: " + sampleRate + " Hz (restart recording to apply).");
+});
+
+async function startRecording(){
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    log("getUserMedia not supported in this browser.");
+    setStatus("No microphone support", "#f97316");
+    return;
+  }
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio:{ channelCount:1 }, video:false });
+  } catch(err){
+    log("Microphone permission denied: " + err);
+    setStatus("Mic permission denied", "#f97316");
+    return;
+  }
+
+  audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: sampleRate });
+  const source = audioContext.createMediaStreamSource(micStream);
+
+  analyzer = audioContext.createAnalyser();
+  analyzer.fftSize = 256;
+  source.connect(analyzer);
+
+  const bufferSize = 4096;
+  scriptNode = audioContext.createScriptProcessor(bufferSize, 1, 1);
+  scriptNode.onaudioprocess = (event) => {
+    const input = event.inputBuffer.getChannelData(0);
+    bufferParts.push(new Float32Array(input));
+    recordedSeconds += input.length / audioContext.sampleRate;
+    updateMicLevel();
+
+    if (recordedSeconds >= chunkSeconds) {
+      const all = flattenFloat32Array(bufferParts);
+      bufferParts = [];
+      recordedSeconds = 0;
+      const wavBlob = encodeWAV(all, audioContext.sampleRate);
+      sendChunk(wavBlob);
+    }
+  };
+
+  source.connect(scriptNode);
+  scriptNode.connect(audioContext.destination);
+
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
+  setStatus("Recording…", "#22c55e");
+  log("Recording started with chunk length " + chunkSeconds + " seconds.");
+}
+
+function stopRecording(){
+  if (bufferParts.length > 0 && audioContext) {
+    const all = flattenFloat32Array(bufferParts);
+    bufferParts = [];
+    recordedSeconds = 0;
+    const wavBlob = encodeWAV(all, audioContext.sampleRate);
+    sendChunk(wavBlob);
+  }
+
+  if (scriptNode){
+    scriptNode.disconnect();
+    scriptNode.onaudioprocess = null;
+    scriptNode = null;
+  }
+  if (analyzer){
+    analyzer.disconnect && analyzer.disconnect();
+    analyzer = null;
+  }
+  if (audioContext){
+    audioContext.close();
+    audioContext = null;
+  }
+  if (micStream){
+    micStream.getTracks().forEach(t => t.stop());
+    micStream = null;
+  }
+
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+  setStatus("Stopped");
+  chunkInfo.textContent = "Chunk: idle";
+  log("Recording stopped.");
+}
+
+function flattenFloat32Array(chunks){
+  let total = 0;
+  for (let c of chunks) total += c.length;
+  const result = new Float32Array(total);
+  let offset = 0;
+  for (let c of chunks){
+    result.set(c, offset);
+    offset += c.length;
+  }
+  return result;
+}
+
+function encodeWAV(samples, srcSampleRate){
+  const outSampleRate = 16000;
+  let resampled = (srcSampleRate === outSampleRate)
+    ? samples
+    : resampleFloat32(samples, srcSampleRate, outSampleRate);
+
+  const buffer = new ArrayBuffer(44 + resampled.length * 2);
+  const view = new DataView(buffer);
+
+  writeString(view, 0, 'RIFF');
+  view.setUint32(4, 36 + resampled.length * 2, true);
+  writeString(view, 8, 'WAVE');
+  writeString(view, 12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, outSampleRate, true);
+  view.setUint32(28, outSampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeString(view, 36, 'data');
+  view.setUint32(40, resampled.length * 2, true);
+
+  let offset = 44;
+  for (let i=0;i<resampled.length;i++,offset+=2){
+    let s = Math.max(-1, Math.min(1, resampled[i]));
+    view.setInt16(offset, s < 0 ? s*0x8000 : s*0x7FFF, true);
+  }
+  return new Blob([view], { type:'audio/wav' });
+}
+
+function writeString(view, offset, str){
+  for (let i=0;i<str.length;i++){
+    view.setUint8(offset + i, str.charCodeAt(i));
+  }
+}
+
+function resampleFloat32(buffer, srcRate, dstRate){
+  if (srcRate === dstRate) return buffer;
+  const ratio = srcRate / dstRate;
+  const newLength = Math.round(buffer.length / ratio);
+  const result = new Float32Array(newLength);
+  let offsetResult = 0;
+  let offsetBuffer = 0;
+  while (offsetResult < newLength){
+    const nextOffsetBuffer = Math.round((offsetResult + 1) * ratio);
+    let accum = 0, count = 0;
+    for (let i=offsetBuffer; i<nextOffsetBuffer && i<buffer.length; i++){
+      accum += buffer[i];
+      count++;
+    }
+    result[offsetResult] = count ? accum / count : 0;
+    offsetResult++;
+    offsetBuffer = nextOffsetBuffer;
+  }
+  return result;
+}
+
+async function sendChunk(blob){
+  const fname = `chunk_${sessionId}_${String(chunkIndex++).padStart(4,'0')}.wav`;
+  const fd = new FormData();
+  fd.append('audio', blob, fname);
+
+  chunkInfo.textContent = `Chunk ${chunkIndex} — sending…`;
+  try {
+    const resp = await fetch('/transcribe', { method:'POST', body:fd });
+    let data;
+    try {
+      data = await resp.json();
+    } catch(e){
+      log("Server returned non-JSON: " + e);
+      chunkInfo.textContent = `Chunk ${chunkIndex} — invalid JSON`;
+      return;
+    }
+
+    if (!resp.ok){
+      log("Server error: " + JSON.stringify(data));
+      setStatus("Server error", "#f97316");
+      chunkInfo.textContent = `Chunk ${chunkIndex} — error`;
+      return;
+    }
+
+    const ml = data.transcript || '';
+    const ar = data.translation || '';
+
+    updateTexts(ml, ar);
+    addHistoryItem(ml, ar);
+    chunkInfo.textContent = `Chunk ${chunkIndex} — done`;
+    setStatus("Recording…", "#22c55e");
+  } catch(err){
+    log("Network error: " + err);
+    setStatus("Network error", "#f97316");
+    chunkInfo.textContent = `Chunk ${chunkIndex} — network error`;
+  }
+}
+
+function updateTexts(ml, ar){
+  if (ml){
+    mlTextEl.textContent = ml;
+  }
+  if (ar){
+    arTextEl.textContent = ar;
+    arTextEl.style.direction = 'rtl';
+  }
+}
+
+function addHistoryItem(ml, ar){
+  const item = document.createElement('div');
+  item.className = 'hist-item';
+
+  const mlDiv = document.createElement('div');
+  mlDiv.className = 'hist-ml';
+  mlDiv.textContent = ml || '(no Malayalam)';
+
+  const arDiv = document.createElement('div');
+  arDiv.className = 'hist-ar';
+  arDiv.textContent = ar || '(no Arabic)';
+
+  const meta = document.createElement('div');
+  meta.className = 'hist-meta';
+  const ts = new Date().toLocaleTimeString();
+  meta.innerHTML = `<span>${ts}</span><span>chunk #${chunkIndex}</span>`;
+
+  item.appendChild(mlDiv);
+  item.appendChild(arDiv);
+  item.appendChild(meta);
+
+  historyEl.insertBefore(item, historyEl.firstChild);
+}
+
+function updateMicLevel(){
+  if (!analyzer) return;
+  const arr = new Uint8Array(analyzer.frequencyBinCount);
+  analyzer.getByteTimeDomainData(arr);
+  let sum = 0;
+  for (let i=0;i<arr.length;i++){
+    const v = (arr[i] - 128) / 128;
+    sum += v*v;
+  }
+  const rms = Math.sqrt(sum / arr.length);
+  const pct = Math.min(1, rms * 3);
+  micLevelBar.style.transform = `scaleX(${pct})`;
+  micLevelBar.style.width = `${Math.max(1, pct*100)}%`;
+}
+
+startBtn.addEventListener('click', startRecording);
+stopBtn.addEventListener('click', stopRecording);
+
+micLevelBar.style.transformOrigin = 'left center';
+micLevelBar.style.width = '1%';
+
+// Startup note
+log("Make sure your Flask server exposes POST /transcribe returning JSON { transcript, translation } and that STT is configured for Malayalam → Arabic.");
+</script>
+</body>
+</html>
